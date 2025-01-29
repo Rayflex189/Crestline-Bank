@@ -165,32 +165,50 @@
                 stroke-dashoffset: -358;
             }
         }
-/* Style the Telegram icon */
-.telegram-icon {
-    position: fixed;
-    bottom: 20px; /* Distance from the bottom of the page */
-    left: 20px;   /* Distance from the left of the page */
-    background: #0088cc; /* Telegram's official color */
-    color: white;
-    border-radius: 50%;
-    padding: 15px; /* Increased padding for larger icon */
-    font-size: 40px; /* Increased font size for larger icon */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-decoration: none;
-    z-index: 9999; /* Ensure it's above other elements */
-}
 
-.telegram-icon:hover {
-    background: #007ab8; /* Darker color on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
+        .telegram-icon {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #0088cc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            animation: bounce 2s infinite;
+            transition: transform 0.3s;
+        }
 
+        .telegram-icon:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .telegram-icon img {
+            width: 35px;
+            height: 35px;
+        }
     </style>
     <!-- Link to Font Awesome CSS for the Telegram icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Link to your CSS file -->
 </head>
 <body>
+    <div class="telegram-icon" id="telegramBtn">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+    </div>
     <div class="dashboard">
         <div class="loading-container">
             <main>
@@ -229,5 +247,10 @@
             </p>
         </div>
     </div>
+    <script>
+             document.getElementById("telegramBtn").addEventListener("click", function() {
+            window.open("https://t.me/CRESTLINE_BANK", "_blank");
+        });
+    </script>
 </body>
 </html>
