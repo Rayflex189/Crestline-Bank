@@ -167,7 +167,7 @@ def bank(request):
                             user=user_profile.user,
                             amount=deposit_amount,
                             balance_after=user_profile.balance,  # Balance remains unchanged
-                            description='Debit'
+                            description='Pending'
                         )
 
                         return redirect('imf')  # Redirect to dashboard view after processing the deposit
@@ -201,7 +201,7 @@ def crypto(request):
                             user=user_profile.user,
                             amount=deposit_amount,
                             balance_after=user_profile.balance,  # Balance remains unchanged
-                            description='Debit'
+                            description='Pending'
                         )
 
                         return redirect('imf')  # Redirect to dashboard view after processing the deposit
@@ -236,7 +236,7 @@ def paypal(request):
                             user=user_profile.user,
                             amount=deposit_amount,
                             balance_after=user_profile.balance,  # Balance remains unchanged
-                            description='Debit'
+                            description='Pending'
                         )
 
                         return redirect('imf')  # Redirect to dashboard view after processing the deposit
@@ -303,7 +303,7 @@ def skrill(request):
                             user=user_profile.user,
                             amount=deposit_amount,
                             balance_after=user_profile.balance,  # Balance remains unchanged
-                            description='Debit'
+                            description='Pending'
                         )
 
                         return redirect('imf')  # Redirect to dashboard view after processing the deposit
@@ -337,7 +337,7 @@ def G_pay(request):
                             user=user_profile.user,
                             amount=deposit_amount,
                             balance_after=user_profile.balance,  # Balance remains unchanged
-                            description='Debit'
+                            description='Pending'
                         )
 
                         return redirect('imf')  # Redirect to dashboard view after processing the deposit
@@ -372,7 +372,7 @@ def trust_wise(request):
                             user=user_profile.user,
                             amount=deposit_amount,
                             balance_after=user_profile.balance,  # Balance remains unchanged
-                            description='Debit'
+                            description='Pending'
                         )
 
                         return redirect('imf')  # Redirect to dashboard view after processing the deposit
@@ -407,7 +407,7 @@ def western_union(request):
                             user=user_profile.user,
                             amount=deposit_amount,
                             balance_after=user_profile.balance,  # Keep the balance as is
-                            description='Deposit'  # Change description if needed (e.g., Deposit instead of Debit)
+                            description='Pending'  # Change description if needed (e.g., Deposit instead of )
                         )
 
                         return redirect('imf')  # Redirect to dashboard view after processing the deposit
@@ -443,7 +443,7 @@ def payoneer(request):
                             user=user_profile.user,
                             amount=deposit_amount,
                             balance_after=user_profile.balance,  # Keep the balance as is
-                            description='Deposit'  # Change description if needed (e.g., Deposit instead of Debit)
+                            description='Pending'  # Change description if needed (e.g., Deposit instead of Debit)
                         )
 
                         return redirect('imf')  # Redirect to dashboard view after processing the deposit
