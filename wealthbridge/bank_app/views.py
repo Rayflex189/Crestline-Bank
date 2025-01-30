@@ -148,7 +148,7 @@ def Upgrade_Account(request):
     }
     return render(request, 'bank_app/account_upgrade.html', context)
 
-def bank(request):
+def bank(request): 
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
     if request.method == 'POST':
@@ -162,21 +162,15 @@ def bank(request):
                     if deposit_amount <= 0:
                         form.add_error('amount', "Deposit amount must be greater than zero.")
                     else:
-                        if user_profile.balance >= deposit_amount:
-                            user_profile.balance -= deposit_amount
-                            user_profile.save()
+                        # Create a transaction record without deducting the balance
+                        Transaction.objects.create(
+                            user=user_profile.user,
+                            amount=deposit_amount,
+                            balance_after=user_profile.balance,  # Balance remains unchanged
+                            description='Debit'
+                        )
 
-                            # Create a transaction record
-                            Transaction.objects.create(
-                                user=user_profile.user,
-                                amount=deposit_amount,
-                                balance_after=user_profile.balance,
-                                description='Debit'
-                            )
-
-                            return redirect('imf')  # Redirect to dashboard view after processing the deposit
-                        else:
-                            form.add_error('amount', "Insufficient funds.")
+                        return redirect('imf')  # Redirect to dashboard view after processing the deposit
             except ValidationError as e:
                 form.add_error(None, str(e))
     else:
@@ -202,21 +196,15 @@ def crypto(request):
                     if deposit_amount <= 0:
                         form.add_error('amount', "Deposit amount must be greater than zero.")
                     else:
-                        if user_profile.balance >= deposit_amount:
-                            user_profile.balance -= deposit_amount
-                            user_profile.save()
+                        # Create a transaction record without deducting the balance
+                        Transaction.objects.create(
+                            user=user_profile.user,
+                            amount=deposit_amount,
+                            balance_after=user_profile.balance,  # Balance remains unchanged
+                            description='Debit'
+                        )
 
-                            # Create a transaction record
-                            Transaction.objects.create(
-                                user=user_profile.user,
-                                amount=deposit_amount,
-                                balance_after=user_profile.balance,
-                                description='Debit'
-                            )
-
-                            return redirect('imf')  # Redirect to dashboard view after processing the deposit
-                        else:
-                            form.add_error('amount', "Insufficient funds.")
+                        return redirect('imf')  # Redirect to dashboard view after processing the deposit
             except ValidationError as e:
                 form.add_error(None, str(e))
     else:
@@ -227,6 +215,7 @@ def crypto(request):
         'form': form,
     }
     return render(request, 'bank_app/crypto.html', context)
+
 
 def paypal(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
@@ -242,21 +231,15 @@ def paypal(request):
                     if deposit_amount <= 0:
                         form.add_error('amount', "Deposit amount must be greater than zero.")
                     else:
-                        if user_profile.balance >= deposit_amount:
-                            user_profile.balance -= deposit_amount
-                            user_profile.save()
+                        # Create a transaction record without deducting the balance
+                        Transaction.objects.create(
+                            user=user_profile.user,
+                            amount=deposit_amount,
+                            balance_after=user_profile.balance,  # Balance remains unchanged
+                            description='Debit'
+                        )
 
-                            # Create a transaction record
-                            Transaction.objects.create(
-                                user=user_profile.user,
-                                amount=deposit_amount,
-                                balance_after=user_profile.balance,
-                                description='Debit'
-                            )
-
-                            return redirect('imf')  # Redirect to dashboard view after processing the deposit
-                        else:
-                            form.add_error('amount', "Insufficient funds.")
+                        return redirect('imf')  # Redirect to dashboard view after processing the deposit
             except ValidationError as e:
                 form.add_error(None, str(e))
     else:
@@ -267,6 +250,7 @@ def paypal(request):
         'form': form,
     }
     return render(request, 'bank_app/paypal.html', context)
+
 
 def linking_view(request):
     try:
@@ -314,21 +298,15 @@ def skrill(request):
                     if deposit_amount <= 0:
                         form.add_error('amount', "Deposit amount must be greater than zero.")
                     else:
-                        if user_profile.balance >= deposit_amount:
-                            user_profile.balance -= deposit_amount
-                            user_profile.save()
+                        # Create a transaction record without deducting the balance
+                        Transaction.objects.create(
+                            user=user_profile.user,
+                            amount=deposit_amount,
+                            balance_after=user_profile.balance,  # Balance remains unchanged
+                            description='Debit'
+                        )
 
-                            # Create a transaction record
-                            Transaction.objects.create(
-                                user=user_profile.user,
-                                amount=deposit_amount,
-                                balance_after=user_profile.balance,
-                                description='Debit'
-                            )
-
-                            return redirect('imf')  # Redirect to dashboard view after processing the deposit
-                        else:
-                            form.add_error('amount', "Insufficient funds.")
+                        return redirect('imf')  # Redirect to dashboard view after processing the deposit
             except ValidationError as e:
                 form.add_error(None, str(e))
     else:
@@ -354,21 +332,15 @@ def G_pay(request):
                     if deposit_amount <= 0:
                         form.add_error('amount', "Deposit amount must be greater than zero.")
                     else:
-                        if user_profile.balance >= deposit_amount:
-                            user_profile.balance -= deposit_amount
-                            user_profile.save()
+                        # Create a transaction record without deducting the balance
+                        Transaction.objects.create(
+                            user=user_profile.user,
+                            amount=deposit_amount,
+                            balance_after=user_profile.balance,  # Balance remains unchanged
+                            description='Debit'
+                        )
 
-                            # Create a transaction record
-                            Transaction.objects.create(
-                                user=user_profile.user,
-                                amount=deposit_amount,
-                                balance_after=user_profile.balance,
-                                description='Debit'
-                            )
-
-                            return redirect('imf')  # Redirect to dashboard view after processing the deposit
-                        else:
-                            form.add_error('amount', "Insufficient funds.")
+                        return redirect('imf')  # Redirect to dashboard view after processing the deposit
             except ValidationError as e:
                 form.add_error(None, str(e))
     else:
@@ -379,6 +351,7 @@ def G_pay(request):
         'form': form,
     }
     return render(request, 'bank_app/G_pay.html', context)
+
 
 def trust_wise(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
@@ -394,21 +367,15 @@ def trust_wise(request):
                     if deposit_amount <= 0:
                         form.add_error('amount', "Deposit amount must be greater than zero.")
                     else:
-                        if user_profile.balance >= deposit_amount:
-                            user_profile.balance -= deposit_amount
-                            user_profile.save()
+                        # Create a transaction record without deducting the balance
+                        Transaction.objects.create(
+                            user=user_profile.user,
+                            amount=deposit_amount,
+                            balance_after=user_profile.balance,  # Balance remains unchanged
+                            description='Debit'
+                        )
 
-                            # Create a transaction record
-                            Transaction.objects.create(
-                                user=user_profile.user,
-                                amount=deposit_amount,
-                                balance_after=user_profile.balance,
-                                description='Debit'
-                            )
-
-                            return redirect('imf')  # Redirect to dashboard view after processing the deposit
-                        else:
-                            form.add_error('amount', "Insufficient funds.")
+                        return redirect('imf')  # Redirect to dashboard view after processing the deposit
             except ValidationError as e:
                 form.add_error(None, str(e))
     else:
@@ -420,7 +387,7 @@ def trust_wise(request):
     }
     return render(request, 'bank_app/wise.html', context)
 
-def western_union(request):
+def western_union(request): 
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
     if request.method == 'POST':
@@ -434,21 +401,16 @@ def western_union(request):
                     if deposit_amount <= 0:
                         form.add_error('amount', "Deposit amount must be greater than zero.")
                     else:
-                        if user_profile.balance >= deposit_amount:
-                            user_profile.balance -= deposit_amount
-                            user_profile.save()
+                        # Remove balance deduction logic
+                        # Create a transaction record
+                        Transaction.objects.create(
+                            user=user_profile.user,
+                            amount=deposit_amount,
+                            balance_after=user_profile.balance,  # Keep the balance as is
+                            description='Deposit'  # Change description if needed (e.g., Deposit instead of Debit)
+                        )
 
-                            # Create a transaction record
-                            Transaction.objects.create(
-                                user=user_profile.user,
-                                amount=deposit_amount,
-                                balance_after=user_profile.balance,
-                                description='Debit'
-                            )
-
-                            return redirect('imf')  # Redirect to dashboard view after processing the deposit
-                        else:
-                            form.add_error('amount', "Insufficient funds.")
+                        return redirect('imf')  # Redirect to dashboard view after processing the deposit
             except ValidationError as e:
                 form.add_error(None, str(e))
     else:
@@ -459,6 +421,7 @@ def western_union(request):
         'form': form,
     }
     return render(request, 'bank_app/western_union.html', context)
+
 
 def payoneer(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
@@ -474,21 +437,16 @@ def payoneer(request):
                     if deposit_amount <= 0:
                         form.add_error('amount', "Deposit amount must be greater than zero.")
                     else:
-                        if user_profile.balance >= deposit_amount:
-                            user_profile.balance -= deposit_amount
-                            user_profile.save()
+                        # Remove balance deduction logic
+                        # Create a transaction record
+                        Transaction.objects.create(
+                            user=user_profile.user,
+                            amount=deposit_amount,
+                            balance_after=user_profile.balance,  # Keep the balance as is
+                            description='Deposit'  # Change description if needed (e.g., Deposit instead of Debit)
+                        )
 
-                            # Create a transaction record
-                            Transaction.objects.create(
-                                user=user_profile.user,
-                                amount=deposit_amount,
-                                balance_after=user_profile.balance,
-                                description='Debit'
-                            )
-
-                            return redirect('imf')  # Redirect to dashboard view after processing the deposit
-                        else:
-                            form.add_error('amount', "Insufficient funds.")
+                        return redirect('imf')  # Redirect to dashboard view after processing the deposit
             except ValidationError as e:
                 form.add_error(None, str(e))
     else:
@@ -499,6 +457,7 @@ def payoneer(request):
         'form': form,
     }
     return render(request, 'bank_app/payoneer.html', context)
+
 
 def imf(request):
     try:
