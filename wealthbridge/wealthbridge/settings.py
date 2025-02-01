@@ -27,9 +27,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['crestline-finance.onrender.com']
 
-import dj_database_url
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -55,15 +52,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'wealthbridge.urls'
-
-# Replace the SQLite DATABASES configuration with PostgreSQL:
-DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/mysite',
-        conn_max_age=600
-    )
-}
 
 TEMPLATES = [
     {
