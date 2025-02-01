@@ -12,6 +12,16 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+import os
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default="postgresql://crestline_database_user:WOWT7sj95uYjzxFyNlNSs9myUL0hBpgC@dpg-cuf4pmlds78s73fgujhg-a.oregon-postgres.render.com/crestline_database"
+    )
+}
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -75,14 +85,6 @@ WSGI_APPLICATION = 'wealthbridge.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -123,7 +125,7 @@ USE_TZ = True
 
 # This setting informs Django of the URI path from which your static files will be served to users
 # Here, they well be accessible at your-domain.onrender.com/static/... or yourcustomdomain.com/static/...
-import os
+
 
 STATIC_URL = 'static/'
 
