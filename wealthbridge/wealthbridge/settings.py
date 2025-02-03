@@ -18,12 +18,15 @@ import dj_database_url
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Crestline Database',
+        'NAME': 'crestline_database',
         'USER': 'crestline_database_user',
         'PASSWORD': 'WOWT7sj95uYjzxFyNlNSs9myUL0hBpgC',
-        'HOST': 'postgresql://crestline_database_user:WOWT7sj95uYjzxFyNlNSs9myUL0hBpgC@dpg-cuf4pmlds78s73fgujhg-a.oregon-postgres.render.com/crestline_database',  # Check this
+        'HOST': 'dpg-cuf4pmlds78s73fgujhg-a.oregon-postgres.render.com',  # Check this
         'PORT': '5432',
-    }
+    },
+     'OPTIONS': {
+            'sslmode': 'require',
+        },
 }
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
