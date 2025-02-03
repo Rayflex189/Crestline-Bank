@@ -16,11 +16,15 @@ import os
 import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default="postgresql://crestline_database_user:WOWT7sj95uYjzxFyNlNSs9myUL0hBpgC@dpg-cuf4pmlds78s73fgujhg-a.oregon-postgres.render.com/crestline_database"
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Crestline Database',
+        'USER': 'crestline_database_user',
+        'PASSWORD': 'WOWT7sj95uYjzxFyNlNSs9myUL0hBpgC',
+        'HOST': 'postgresql://crestline_database_user:WOWT7sj95uYjzxFyNlNSs9myUL0hBpgC@dpg-cuf4pmlds78s73fgujhg-a.oregon-postgres.render.com/crestline_database',  # Check this
+        'PORT': '5432',
+    }
 }
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,6 +82,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'wealthbridge.wsgi.application'
 
