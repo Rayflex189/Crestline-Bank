@@ -18,10 +18,10 @@ import dj_database_url
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'crestline_database',
-        'USER': 'crestline_database_user',
-        'PASSWORD': 'WOWT7sj95uYjzxFyNlNSs9myUL0hBpgC',
-        'HOST': 'dpg-cuf4pmlds78s73fgujhg-a.oregon-postgres.render.com',  # Check this
+        'NAME': 'crestline_support_database',
+        'USER': 'crestline_support_database_user',
+        'PASSWORD': '5B0xbvGWTJ8iAkbOyV9NON8OrWqALHQl',
+        'HOST': 'dpg-cv4aa9ggph6c738tlt8g-a.oregon-postgres.render.com',  # Check this
         'PORT': '5432',
     },
      'OPTIONS': {
