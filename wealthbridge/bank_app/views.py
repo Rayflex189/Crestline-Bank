@@ -17,35 +17,34 @@ from .models import *
 from .utilis import *
 
 @unauthenticated_user
-def reg(request):
-    form = CustomUserCreationForm()
-    show_login = False  # To control login form display
+def register(request):
+    form = UserCreationForm()
 
     if request.method == 'POST':
-        # Handle Registration
-        if 'register' in request.POST:
-            form = CustomUserCreationForm(request.POST)
-            if form.is_valid():
-                form.save()
-                messages.success(request, "Account created successfully! Please log in.")
-                show_login = True  # Show the login form after successful registration
-            else:
-                messages.error(request, "Registration failed. Please correct the errors below.")
-        
-        # Handle Login
-        elif 'login' in request.POST:
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-            user = authenticate(request, username=username, password=password)
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return redirect('loginview')
 
-            if user is not None:
-                login(request, user)
-                return redirect('reset_profile')  # Redirect to desired page after login
-            else:
-                messages.info(request, 'Username or password is incorrect.')
+    context = {'form': form}
+    return render(request, 'bank_app/register.html', context)
 
-    return render(request, 'bank_app/registration.html', {'form': form, 'show_login': show_login})
+@unauthenticated_user
+def loginview(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('reset_profile')
+        else:
+            messages.info(request, 'Username OR password is incorrect')
+    context = {}
+    return render(request, 'bank_app/login.html')
+    
 def home(request):
     return render(request, 'bank_app/index.html')
 
