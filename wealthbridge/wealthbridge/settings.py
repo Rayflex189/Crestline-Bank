@@ -21,7 +21,7 @@ import cloudinary.api
 cloudinary.config(
     cloud_name="dlzn0moho",
     api_key="563396395915366",
-    api_secret="8_Hu2A6oefhgbHWGdA0cEehYerc"
+    api_secret="pCSSrLNvxfFSEzY4ZnaOiF5u93o"
 )
 
 DATABASES = {
@@ -56,7 +56,7 @@ ALLOWED_HOSTS = ['crestline-finance.onrender.com']
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dlzn0moho',
     'API_KEY': '563396395915366',
-    'API_SECRET': '8_Hu2A6oefhgbHWGdA0cEehYerc',
+    'API_SECRET': 'pCSSrLNvxfFSEzY4ZnaOiF5u93o',
 }
 
 MEDIA_URL = '/media/'  # or any prefix you choose
