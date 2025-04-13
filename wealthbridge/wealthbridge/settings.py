@@ -20,7 +20,7 @@ import cloudinary.api
 
 cloudinary.config(
     cloud_name="dlzn0moho",
-    api_key="942887989436842",
+    api_key="563396395915366",
     api_secret="8_Hu2A6oefhgbHWGdA0cEehYerc"
 )
 
