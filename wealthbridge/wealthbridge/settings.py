@@ -14,6 +14,15 @@ from pathlib import Path
 
 import os
 import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+cloudinary.config(
+    cloud_name="dlzn0moho",
+    api_key="942887989436842",
+    api_secret="8_Hu2A6oefhgbHWGdA0cEehYerc"
+)
 
 DATABASES = {
     'default': {
