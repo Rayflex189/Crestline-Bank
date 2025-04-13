@@ -53,6 +53,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['crestline-finance.onrender.com']
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dlzn0moho',
+    'API_KEY': '942887989436842',
+    'API_SECRET': '8_Hu2A6oefhgbHWGdA0cEehYerc',
+}
+
+MEDIA_URL = '/media/'  # or any prefix you choose
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 # Application definition
 
 INSTALLED_APPS = [
