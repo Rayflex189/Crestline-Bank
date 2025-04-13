@@ -338,9 +338,36 @@ animation: vibrate 0.5s ease-in-out; /* Apply the vibrating animation */
             margin-bottom: 20px;
             color: darkgreen;
         }
+        /* Telegram Icon */
+.telegram-icon {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #0088cc;
+    color: white;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.telegram-icon:hover {
+    transform: scale(1.1);
+}
+        
     </style>
 </head>
 <body>
+    <a href="https://t.me/CRESTLINE_BANK" class="telegram-icon" target="_blank">
+        <i class="fab fa-telegram"></i>
+    </a>
+    
     <!-- Bank Header -->
     <header class="bank-header">
         <h1>Western Union Transfer</h1>
