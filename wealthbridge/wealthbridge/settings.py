@@ -55,7 +55,7 @@ ALLOWED_HOSTS = ['crestline-finance.onrender.com']
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dlzn0moho',
-    'API_KEY': '942887989436842',
+    'API_KEY': '563396395915366',
     'API_SECRET': '8_Hu2A6oefhgbHWGdA0cEehYerc',
 }
 
