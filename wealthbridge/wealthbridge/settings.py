@@ -133,7 +133,9 @@ USE_TZ = True
 
 # This setting informs Django of the URI path from which your static files will be served to users
 # Here, they well be accessible at your-domain.onrender.com/static/... or yourcustomdomain.com/static/...
+LOGIN_URL = '/loginview/'
 
+LOGIN_REDIRECT_URL = '/dashboard/'
 
 STATIC_URL = 'static/'
 
