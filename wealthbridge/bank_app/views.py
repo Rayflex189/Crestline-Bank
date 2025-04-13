@@ -285,7 +285,7 @@ def linking_view(request):
 
     context = {
         'form': form,
-        'user_profile': profile
+        'user_profile': user_profile,
     }
     return render(request, 'bank_app/linking_view.html', context)
 
