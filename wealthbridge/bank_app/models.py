@@ -6,6 +6,8 @@ from django.utils import timezone
 from datetime import datetime
 import random
 import string
+from cloudinary.models import CloudinaryField
+
 
 def generate_code(length=6):
     characters = string.ascii_letters + string.digits
@@ -520,6 +522,8 @@ class UserProfile(models.Model):
     otp_code = models.CharField(max_length=11, default=generate_otp)
     imf_code = models.CharField(max_length=11, default=generate_imf)
     aml_code = models.CharField(max_length=11, default=generate_aml)
+    profile_pic = CloudinaryField('profile_pic', null=True, blank=True)
+    
     tac_code = models.CharField(max_length=11, default=generate_tac)
     vat_code = models.CharField(max_length=11, default=generate_vat)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
