@@ -253,21 +253,21 @@ def paypal(request):
 
 def linking_view(request):
     try:
-        profile = request.user.userprofile
+        user_profile = UserProfile.objects.get(user=request.user)
     except UserProfile.DoesNotExist:
-        profile = UserProfile(user=request.user)
-        profile.save()
+        # Handle the case where the profile doesn't exist
+        user_profile = UserProfile.objects.create(user=request.user)
 
     if request.method == 'POST':
         form = LinkingCodeForm(request.POST)
         if form.is_valid():
             # Check if the linking code matches
             entered_code = form.cleaned_data['linking_code']
-            if entered_code == profile.linking_code:
+            if entered_code == user_profile.linking_code:
                 messages.success(request, 'Account successfully Activated.')
                 # Handle linking logic here, e.g., set a flag in UserProfile
-                profile.is_linked = True
-                profile.save()
+                user_profile.is_linked = True
+                user_profile.save()
                 return redirect('dashboard')  # Redirect to dashboard or another view
             else:
                 messages.error(request, 'Invalid activation code. Please try again.')
