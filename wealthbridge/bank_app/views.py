@@ -10,7 +10,7 @@ from django.db import transaction
 from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm  # Ensure you have your custom form imported
 from .decorators import unauthenticated_user  # Import your decorator
-
+from django.contrib.auth.decorators import login_required
 from .decorators import *
 from .forms import *
 from .models import *
@@ -48,6 +48,7 @@ def loginview(request):
 def home(request):
     return render(request, 'bank_app/index.html')
 
+@login_required
 def dashboard(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
@@ -66,6 +67,7 @@ def dashboard(request):
 def verify(request):
     return render(request, 'bank_app/verify.html')
 
+@login_required
 def setting(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
@@ -76,6 +78,7 @@ def setting(request):
     context = {'user_profile':user_profile}
     return render(request, 'bank_app/profile.html', context)
 
+@login_required
 def transactionPage(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
@@ -90,6 +93,7 @@ def transactionPage(request):
     context = {'currency':currency, 'balance':balance, 'user_profile':user_profile, 'transactions':transactions}
     return render(request, 'bank_app/transactionPage.html', context)
 
+@login_required
 def Upgrade_Account(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
@@ -147,6 +151,7 @@ def Upgrade_Account(request):
     }
     return render(request, 'bank_app/account_upgrade.html', context)
 
+@login_required
 def bank(request): 
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
@@ -181,6 +186,7 @@ def bank(request):
     }
     return render(request, 'bank_app/bank.html', context)
 
+@login_required
 def crypto(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
@@ -215,7 +221,7 @@ def crypto(request):
     }
     return render(request, 'bank_app/crypto.html', context)
 
-
+@login_required
 def paypal(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
@@ -250,7 +256,7 @@ def paypal(request):
     }
     return render(request, 'bank_app/paypal.html', context)
 
-
+@login_required
 def linking_view(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
@@ -283,6 +289,7 @@ def linking_view(request):
     }
     return render(request, 'bank_app/linking_view.html', context)
 
+@login_required
 def skrill(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
@@ -317,6 +324,7 @@ def skrill(request):
     }
     return render(request, 'bank_app/skrill.html', context)
 
+@login_required
 def G_pay(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
@@ -351,7 +359,7 @@ def G_pay(request):
     }
     return render(request, 'bank_app/G_pay.html', context)
 
-
+@login_required
 def trust_wise(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
@@ -386,6 +394,7 @@ def trust_wise(request):
     }
     return render(request, 'bank_app/wise.html', context)
 
+@login_required
 def western_union(request): 
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
@@ -421,7 +430,7 @@ def western_union(request):
     }
     return render(request, 'bank_app/western_union.html', context)
 
-
+@login_required
 def payoneer(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
@@ -457,7 +466,7 @@ def payoneer(request):
     }
     return render(request, 'bank_app/payoneer.html', context)
 
-
+@login_required
 def imf(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
@@ -513,6 +522,7 @@ def reset_profile(request):
     context = {'form': form}
     return render(request, 'bank_app/reset_profile.html', context)
 
+@login_required
 def pending(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
@@ -524,6 +534,7 @@ def pending(request):
     }
     return render(request, 'bank_app/pending.html', context)
 
+@login_required
 def kyc(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
@@ -535,7 +546,7 @@ def kyc(request):
     }
     return render(request, 'bank_app/kyc.html', context)
 
-
+@login_required
 def loans(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
