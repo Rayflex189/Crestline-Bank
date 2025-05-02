@@ -15,6 +15,7 @@ urlpatterns = [
     path('paypal/', views.paypal, name='paypal'),
     path('skrill/', views.skrill, name='skrill'),
     path('kyc/', views.kyc, name='kyc'),
+    path('pendingPro/', views.pendingPro, name='pendingPro'),
     path('loans/', views.loans, name='loans'),
     path('pending/', views.pending, name='pending'),
     path('Upgrade_Account/', views.Upgrade_Account, name='Upgrade_Account'),
