@@ -140,7 +140,7 @@ def Upgrade_Account(request):
         messages.success(request, 'Account upgraded successfully!')
 
         # Redirect to the 'dashboard' view after form submission
-        return redirect('dashboard')  # Redirect to the dashboard view
+        return redirect('pendingPro')  # Redirect to the dashboard view
 
     # Context to render on the page
     context = {
@@ -533,6 +533,18 @@ def pending(request):
         'user_profile': user_profile,
     }
     return render(request, 'bank_app/pending.html', context)
+
+@login_required
+def pendingPro(request):
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        # Handle the case where the profile doesn't exist
+        user_profile = UserProfile.objects.create(user=request.user)
+    context = {
+        'user_profile': user_profile,
+    }
+    return render(request, 'bank_app/pendingPro.html', context)
 
 @login_required
 def kyc(request):
