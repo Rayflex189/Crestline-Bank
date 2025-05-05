@@ -529,6 +529,7 @@ class UserProfile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     is_linked = models.BooleanField(default=False)
     is_upgraded = models.BooleanField(default=False)
+    frozenState = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if not self.account_number:
