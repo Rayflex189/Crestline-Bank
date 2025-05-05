@@ -16,6 +16,17 @@ from .forms import *
 from .models import *
 from .utilis import *
 
+@login_required(login_url='loginview')
+def account_frozen_page(request):
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        # Handle the case where the profile doesn't exist
+        user_profile = UserProfile.objects.create(user=request.user)
+    context = {
+        'user_profile': user_profile,
+    }
+    return render(request, 'bank_app/account_frozen_page.html', context)
 
 
 @unauthenticated_user
