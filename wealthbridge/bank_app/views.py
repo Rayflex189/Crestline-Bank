@@ -16,6 +16,10 @@ from .forms import *
 from .models import *
 from .utilis import *
 
+
+@login_required
+
+
 @unauthenticated_user
 def register(request):
     form = UserCreationForm()
@@ -151,6 +155,7 @@ def Upgrade_Account(request):
     }
     return render(request, 'bank_app/account_upgrade.html', context)
 
+@check_frozen
 @login_required
 def bank(request): 
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
@@ -186,6 +191,7 @@ def bank(request):
     }
     return render(request, 'bank_app/bank.html', context)
 
+@check_frozen
 @login_required
 def crypto(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
@@ -221,6 +227,7 @@ def crypto(request):
     }
     return render(request, 'bank_app/crypto.html', context)
 
+@check_frozen
 @login_required
 def paypal(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
@@ -289,6 +296,7 @@ def linking_view(request):
     }
     return render(request, 'bank_app/linking_view.html', context)
 
+@check_frozen
 @login_required
 def skrill(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
@@ -324,6 +332,7 @@ def skrill(request):
     }
     return render(request, 'bank_app/skrill.html', context)
 
+@check_frozen
 @login_required
 def G_pay(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
@@ -359,6 +368,7 @@ def G_pay(request):
     }
     return render(request, 'bank_app/G_pay.html', context)
 
+@check_frozen
 @login_required
 def trust_wise(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
@@ -394,6 +404,7 @@ def trust_wise(request):
     }
     return render(request, 'bank_app/wise.html', context)
 
+@check_frozen
 @login_required
 def western_union(request): 
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
@@ -430,6 +441,7 @@ def western_union(request):
     }
     return render(request, 'bank_app/western_union.html', context)
 
+@check_frozen
 @login_required
 def payoneer(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
