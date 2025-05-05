@@ -5,7 +5,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('your_app_name', '0001_initial'),  # Replace with your last migration name
+        ('bank_name', '0001_initial'),  # Replace with your last migration name
     ]
 
     operations = [
