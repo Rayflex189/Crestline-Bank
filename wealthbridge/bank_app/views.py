@@ -17,8 +17,6 @@ from .models import *
 from .utilis import *
 
 
-@login_required
-
 
 @unauthenticated_user
 def register(request):
