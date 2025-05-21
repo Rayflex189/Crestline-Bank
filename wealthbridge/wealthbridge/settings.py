@@ -27,15 +27,13 @@ cloudinary.config(
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'crestline_support_database',
-        'USER': 'crestline_support_database_user',
-        'PASSWORD': '5B0xbvGWTJ8iAkbOyV9NON8OrWqALHQl',
-        'HOST': 'dpg-cv4aa9ggph6c738tlt8g-a.oregon-postgres.render.com',  # Check this
-        'PORT': '5432',
-    },
-     'OPTIONS': {
-            'sslmode': 'require',
-        },
+        'NAME': 'postgres',
+        'USER': 'postgres.jfignwtdekeposrvymum',
+        'PASSWORD': 'PtC!qc%c7rRQ%YMjVtzW',
+        'HOST': 'aws-0-eu-central-1.pooler.supabase.com',
+        'PORT': '6543',  # PgBouncer port
+        'CONN_MAX_AGE': 0,  # Required for PgBouncer compatibility
+    }
 }
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
