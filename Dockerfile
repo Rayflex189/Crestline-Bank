@@ -14,12 +14,12 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
-COPY requirements.txt .
+# Copy requirements and install dependencies
+COPY wealthbridge/requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Copy project files
-COPY . .
+# Copy the entire Django project
+COPY wealthbridge /app
 
 # Collect static files
 RUN python manage.py collectstatic --no-input
