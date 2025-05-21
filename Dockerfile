@@ -26,7 +26,7 @@ COPY wealthbridge/ /app/
 RUN chmod +x build.sh
 
 # Run your custom build script
-RUN ./build.sh
+RUN wealthbridge/build.sh
 
 # Collect static files
 RUN python manage.py collectstatic --no-input
