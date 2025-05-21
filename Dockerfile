@@ -4,6 +4,7 @@ FROM python:3.11-slim
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+ENV PIP_ROOT_USER_ACTION=ignore  # Silences pip-as-root warning
 
 # Set working directory
 WORKDIR /app
@@ -14,11 +15,18 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements and install dependencies
+# Copy requirements and install Python dependencies
 COPY wealthbridge/requirements.txt .
-RUN pip install --upgrade pip &&  wealthbridge/build.sh
-# Copy the entire Django project
-COPY wealthbridge /app
+RUN pip install --upgrade pip && pip install -r requirements.txt
+
+# Copy the full Django project
+COPY wealthbridge/ /app/
+
+# Make sure the build.sh script is executable
+RUN chmod +x build.sh
+
+# Run your custom build script
+RUN ./build.sh
 
 # Collect static files
 RUN python manage.py collectstatic --no-input
