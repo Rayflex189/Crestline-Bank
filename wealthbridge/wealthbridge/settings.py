@@ -57,6 +57,10 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': 'pCSSrLNvxfFSEzY4ZnaOiF5u93o',
 }
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://crestline-bank.fly.dev",
+]
+
 MEDIA_URL = '/media/'  # or any prefix you choose
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
