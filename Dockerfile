@@ -4,7 +4,7 @@ FROM python:3.11-slim
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
-ENV PIP_ROOT_USER_ACTION=ignore  # Silences pip-as-root warning
+ENV PIP_ROOT_USER_ACTION=ignore
 
 # Set working directory
 WORKDIR /app
@@ -22,14 +22,11 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 # Copy the full Django project
 COPY wealthbridge/ /app/
 
-# Make sure the build.sh script is executable
-RUN chmod +x build.sh
-
-# Run your custom build script
-RUN wealthbridge/build.sh
-
-# Collect static files
+# Run Django setup commands
 RUN python manage.py collectstatic --no-input
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+RUN python manage.py create_admin
 
 # Expose port
 EXPOSE 8000
