@@ -16,8 +16,7 @@ RUN apt-get update && apt-get install -y \
 
 # Copy requirements and install dependencies
 COPY wealthbridge/requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
-
+RUN pip install --upgrade pip &&  wealthbridge/build.sh
 # Copy the entire Django project
 COPY wealthbridge /app
 
