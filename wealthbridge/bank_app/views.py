@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from datetime import datetime
 
 # Create your views here.
@@ -15,6 +15,18 @@ from .decorators import *
 from .forms import *
 from .models import *
 from .utilis import *
+
+@login_required(login_url='loginview')
+def transaction_detail(request, pk):
+    transaction = get_object_or_404(Transaction, pk=pk, user=request.user)
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+
+    context = {
+        'transaction': transaction,
+        'currency': user_profile.currency,
+        'current_balance': user_profile.balance,
+    }
+    return render(request, 'bank_app/transaction_detail.html', context)
 
 @login_required(login_url='loginview')
 def account_frozen_page(request):
@@ -91,20 +103,6 @@ def setting(request):
     context = {'user_profile':user_profile}
     return render(request, 'bank_app/profile.html', context)
 
-@login_required
-def transactionPage(request):
-    try:
-        user_profile = UserProfile.objects.get(user=request.user)
-    except UserProfile.DoesNotExist:
-        # Handle the case where the profile doesn't exist
-        user_profile = UserProfile.objects.create(user=request.user)
-
-    # Fetch the last 10 transactions
-    currency = user_profile.currency
-    balance = user_profile.balance
-    transactions = Transaction.objects.filter(user=user_profile.user).order_by('-timestamp')[:10]
-    context = {'currency':currency, 'balance':balance, 'user_profile':user_profile, 'transactions':transactions}
-    return render(request, 'bank_app/transactionPage.html', context)
 
 @login_required
 def Upgrade_Account(request):

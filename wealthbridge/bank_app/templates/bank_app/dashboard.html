@@ -26,6 +26,7 @@ s0.parentNode.insertBefore(s1,s0);
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
      <style>
 
 :root{
@@ -661,38 +662,45 @@ small{
 
 
     <div class="custom-container bounce-in" id="bell">
-        <div class="custom-table-box">
-            <h2 class="custom-heading">Recent Transactions</h2>
-            <div class="custom-table-wrapper">
-                <table class="custom-table">
-                    <thead>
-                        <tr>
-                            <th>S/N</th>
-                            <th>Amount</th>
-                            <th>Balance After</th>
-                            <th>Description</th>
-                            <th>Timestamp</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                          {% for transaction in transactions %}
+    <div class="custom-table-box">
+        <h2 class="custom-heading">Recent Transactions</h2>
+        <div class="custom-table-wrapper">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Amount</th>
+                        <th>Balance After</th>
+                        <th>Description</th>
+                        <th>Timestamp</th>
+                        <th>Action</th> <!-- New Column -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
                         <tr class="{% if transaction.description == 'Credit' %}custom-transaction-credit{% else %}custom-transaction-debit{% endif %}">
                             <td>{{ forloop.counter }}</td>
-                            <td>{{user_profile.currency}}{{ transaction.amount }}</td>
-                            <td>{{user_profile.currency}}{{ transaction.balance_after }}</td>
+                            <td>{{ user_profile.currency }}{{ transaction.amount }}</td>
+                            <td>{{ user_profile.currency }}{{ transaction.balance_after }}</td>
                             <td>{{ transaction.description }}</td>
                             <td>{{ transaction.timestamp|date:"M d, Y H:i" }}</td>
+                            <td>
+                                <a href="{% url 'transaction_detail' transaction.pk %}" 
+   class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-3 py-1 rounded transition transform hover:scale-105">
+   View
+                                </a>
+                            </td>
                         </tr>
-                           {% empty %}
+                    {% empty %}
                         <tr>
-                            <td colspan="5">No recent transactions.</td>
+                            <td colspan="6">No recent transactions.</td>
                         </tr>
-                         {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
        <br><br>
             <!-- Bottom Navigation Bar -->
             <nav class="bottom-navbar">

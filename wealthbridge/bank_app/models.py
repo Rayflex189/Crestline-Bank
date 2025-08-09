@@ -63,6 +63,17 @@ class UserProfile(models.Model):
     first_name = models.CharField(max_length=50, blank=True, null=True)
     middle_name = models.CharField(max_length=50, blank=True, null=True)
     four_digit_auth_key = models.IntegerField(null=True, blank=True)
+    TWO_FACTOR_CHOICES = [
+        ('enable', 'Enable'),
+        ('disable', 'Disable'),
+    ]
+
+    two_factor_auth = models.CharField(
+    max_length=10,
+    choices=TWO_FACTOR_CHOICES,
+    default='Enable', 
+    blank=True,
+    )
     
     OCCUPATION_CHOICES = [
         ('management', 'Management'),
@@ -538,17 +549,18 @@ class UserProfile(models.Model):
 
     def clean(self):
         super().clean()
+
+        # Convert to string for consistent validation
+        auth_key_str = str(self.four_digit_auth_key) if self.four_digit_auth_key is not None else ''
+
         if self.two_factor_auth == 'enable':
-            if not self.four_digit_auth_key or len(self.four_digit_auth_key) != 4:
-                raise ValidationError({'four_digit_auth_key': 'A 4-digit authentication key is required when two-factor authentication is enabled.'})
+            if not auth_key_str.isdigit() or len(auth_key_str) != 4:
+                raise ValidationError({
+                    'four_digit_auth_key': 'A 4-digit numeric authentication key is required when two-factor authentication is enabled.'
+                })
         else:
-            # Clear the key if two-factor auth is disabled
             self.four_digit_auth_key = None
 
-    def clean(self):
-        # Ensure four_digit_auth_key is a 4-digit integer
-        if not self.four_digit_auth_key or not (1000 <= self.four_digit_auth_key <= 9999):
-            raise ValidationError("The authentication key must be a 4-digit number.")
 
 
     def __str__(self):
